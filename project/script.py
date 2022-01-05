@@ -1,4 +1,4 @@
-with open('../README.md', 'r') as file:
+with open('README.md', 'r') as file:
     fileData = file.read()
     if 'Power ON' in fileData:
         # turn on the lights
@@ -13,5 +13,5 @@ with open('../README.md', 'r') as file:
         fileData = fileData.replace('bulb-off.png', 'bulb-on.png')
         fileData = fileData.replace('Bulb OFF', 'Bulb ON')
 
-with open('../README.md', 'w') as file:
+with open('README.md', 'w') as file:
     file.write(fileData)
