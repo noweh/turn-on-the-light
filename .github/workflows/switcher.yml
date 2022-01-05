@@ -5,6 +5,23 @@ jobs:
     name: Switch
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - run: 'echo "field: ${{ github.event.client_payload.foo }}"'
-      - run: 'echo "payload: ${{ toJson(github.event.client_payload) }}"'
+      - name: Checkout repo content
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+
+      - name: Execute Python script
+        run: |
+          python project/script.py
+
+      - name: Commit and push README.md file
+        run: |
+          git config user.name "Julien SCHMITT"
+          git config user.email "jschmitt95@protonmail.com"
+          git add -A
+          timestamp=$(date -u)
+          git commit -m "Last Commit: ${timestamp}(TW)" || exit 0
+          git push origin master
