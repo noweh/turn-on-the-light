@@ -1,0 +1,10 @@
+name: switcher
+on: repository_dispatch
+jobs:
+  switch:
+    name: Switch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - run: 'echo "field: ${{ github.event.client_payload.foo }}"'
+      - run: 'echo "payload: ${{ toJson(github.event.client_payload) }}"'
